@@ -1,10 +1,7 @@
 /* ==========================================================
-   Portal Layanan Akademik – styles.css
-   Pendekatan: mobile-first (satu kolom dulu), breakpoint
-   ditambahkan saat konten mulai sempit/renggang.
+   PORTAL LAYANAN AKADEMIK – STYLES.CSS LENGKAP
    ========================================================== */
 
-/* ---------- Token ---------- */
 :root {
   --ink: #0e2238;
   --muted: #44556b;
@@ -17,14 +14,13 @@
   --field-border: #5f7085;
   --error: #b00020;
   --focus: #0b5fff;
-
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --radius: 0.5rem;
   --gap: 1rem;
   --measure: 65ch;
 }
 
-/* ---------- Reset ringan ---------- */
+/* RESET */
 *,
 *::before,
 *::after {
@@ -44,9 +40,12 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
   font: 1.0625rem/1.6 var(--font);
   color: var(--ink);
-   background: var(--paper) url("background.jpg") center 40% / cover no-repeat;
+  background: var(--brand-deep);
+  position: relative;
+  isolation: isolate;
 }
 
 img,
@@ -55,20 +54,34 @@ svg {
   height: auto;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   line-height: 1.2;
   margin: 0 0 0.75rem;
 }
 
-h1 { font-size: clamp(1.4rem, 1rem + 2vw, 2rem); }
-h2 { font-size: clamp(1.5rem, 1.1rem + 2vw, 2.125rem); }
-h3 { font-size: 1.25rem; }
+h1 {
+  font-size: clamp(1.4rem, 1rem + 2vw, 2rem);
+}
 
-p { margin: 0 0 1rem; max-width: var(--measure); }
+h2 {
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.125rem);
+}
 
-a { color: var(--brand); }
+h3 {
+  font-size: 1.25rem;
+}
 
-/* ---------- Fokus keyboard ---------- */
+p {
+  margin: 0 0 1rem;
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--brand);
+}
+
 :focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
@@ -80,7 +93,24 @@ a { color: var(--brand); }
   outline-color: var(--accent);
 }
 
-/* ---------- Utilitas ---------- */
+/* BACKGROUND FOTO */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8, 54, 31, 0.78) 0%,
+      rgba(8, 54, 31, 0.60) 55%,
+      rgba(8, 54, 31, 0.42) 100%
+    ),
+    url("background.jpg") center 40% / cover no-repeat;
+}
+
+/* UTILITAS */
 .wrap {
   width: min(100% - 2rem, 72rem);
   margin-inline: auto;
@@ -106,7 +136,7 @@ a { color: var(--brand); }
   color: var(--muted);
 }
 
-/* ---------- Header & navigasi ---------- */
+/* HEADER */
 .site-header {
   background: var(--brand-deep);
   color: #fff;
@@ -117,11 +147,18 @@ a { color: var(--brand); }
   display: flex;
   align-items: center;
   gap: 0.875rem;
+  min-width: 0;
 }
 
 .brand .logo {
   flex: none;
+  width: auto;
+  max-width: 4rem;
+  height: 4rem;
+  padding: 0.25rem;
   border-radius: 0.75rem;
+  background: #fff;
+  object-fit: contain;
 }
 
 .brand h1 {
@@ -133,6 +170,7 @@ a { color: var(--brand); }
   color: #cfe0e4;
 }
 
+/* NAVIGASI */
 .site-nav {
   background: var(--brand);
   border-bottom: 4px solid var(--accent);
@@ -143,7 +181,7 @@ a { color: var(--brand); }
   flex-wrap: wrap;
   gap: 0 0.25rem;
   list-style: none;
-  margin-block: 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -163,20 +201,37 @@ a { color: var(--brand); }
   text-decoration-thickness: 2px;
 }
 
-/* ---------- Bagian halaman ---------- */
+/* SECTION */
 .section {
   padding-block: 2.5rem;
 }
 
 .section--tint {
-  background: var(--tint);
+  background: transparent;
 }
 
-/* Intro */
+/* BERANDA */
+.intro {
+  color: #fff;
+  padding-block: 3.5rem;
+}
+
+.intro h2,
+.intro p,
+.intro a {
+  color: #fff;
+}
+
 .intro-grid {
   display: grid;
   gap: 2rem;
   align-items: center;
+}
+
+.intro-art svg {
+  display: block;
+  width: 100%;
+  border-radius: 1rem;
 }
 
 .steps {
@@ -203,18 +258,23 @@ a { color: var(--brand); }
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
+  background: var(--accent);
+  color: var(--ink);
   font-weight: 700;
 }
 
-.intro-art svg {
-  display: block;
-  width: 100%;
-  border-radius: 1rem;
+.intro .btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
 }
 
-/* ---------- Kartu layanan ---------- */
+.intro .btn:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+/* KARTU LAYANAN */
 .cards {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -232,6 +292,7 @@ a { color: var(--brand); }
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 0;
   padding: 1.25rem;
   background: #fff;
   border: 1px solid var(--line);
@@ -270,7 +331,7 @@ a { color: var(--brand); }
   font-weight: 700;
 }
 
-/* ---------- Tombol ---------- */
+/* TOMBOL */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -305,7 +366,7 @@ a { color: var(--brand); }
   border-color: var(--brand);
 }
 
-/* ---------- Form ---------- */
+/* FORMULIR */
 .form {
   display: grid;
   gap: 1.5rem;
@@ -315,7 +376,7 @@ a { color: var(--brand); }
 fieldset {
   display: grid;
   gap: 1rem;
-  min-width: 0; /* mencegah fieldset melebarkan layout */
+  min-width: 0;
   margin: 0;
   padding: 1rem 1rem 1.25rem;
   border: 1px solid var(--line);
@@ -346,6 +407,7 @@ input,
 select,
 textarea {
   width: 100%;
+  min-width: 0;
   min-height: 2.75rem;
   padding: 0.55rem 0.75rem;
   border: 2px solid var(--field-border);
@@ -366,8 +428,6 @@ textarea {
   color: var(--muted);
 }
 
-/* Pesan error: muncul hanya setelah pengguna berinteraksi (:user-invalid),
-   dan selalu disertai teks, bukan hanya warna. */
 .error {
   display: none;
   margin: 0;
@@ -388,7 +448,7 @@ textarea {
   display: block;
 }
 
-/* Radio & checkbox */
+/* RADIO DAN CHECKBOX */
 .choices {
   gap: 0.25rem;
 }
@@ -422,9 +482,13 @@ textarea {
   flex: 1 1 12rem;
 }
 
-/* ---------- Footer ---------- */
+.step-next {
+  margin-top: 1.5rem;
+}
+
+/* FOOTER */
 .site-footer {
-  background: var(--brand-deep);
+  background: rgba(8, 54, 31, 0.92);
   color: #fff;
   padding-block: 2rem;
 }
@@ -457,11 +521,50 @@ textarea {
   font-size: 0.9375rem;
 }
 
-/* ==========================================================
-   Breakpoint – ditambahkan karena konten, bukan nama perangkat
-   ========================================================== */
+/* TAMPILAN BAGIAN BERDASARKAN MENU */
+main > .section {
+  display: none;
+  min-height: 60vh;
+}
 
-/* Kartu mulai muat 2 kolom, form mulai muat 2 kolom */
+main > .section:target,
+main:not(:has(> .section:target)) > #beranda {
+  display: block;
+}
+
+body:has(#kontak:target) main > .section {
+  display: none !important;
+}
+
+body:has(#kontak:target) main {
+  min-height: 30vh;
+}
+
+/* MENU AKTIF */
+body:not(:has(:target)) .site-nav a[href="#beranda"],
+body:has(#beranda:target) .site-nav a[href="#beranda"],
+body:has(#layanan:target) .site-nav a[href="#layanan"],
+body:has(#form-permohonan:target) .site-nav a[href="#form-permohonan"],
+body:has(#kontak:target) .site-nav a[href="#kontak"] {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--accent);
+}
+
+/* PANEL PUTIH UNTUK KONTEN */
+main > .section:not(.intro) {
+  padding-block: 2rem;
+}
+
+main > .section:not(.intro) > .wrap {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* TABLET */
 @media (min-width: 40em) {
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -474,9 +577,13 @@ textarea {
   .section {
     padding-block: 3.5rem;
   }
+
+  main > .section:not(.intro) > .wrap {
+    padding: 2rem;
+  }
 }
 
-/* Intro dua kolom agar teks tidak terlalu renggang */
+/* LAPTOP */
 @media (min-width: 56em) {
   .intro-grid {
     grid-template-columns: 1.1fr 0.9fr;
@@ -490,130 +597,77 @@ textarea {
   .copy {
     grid-column: 1 / -1;
   }
+
+  .intro {
+    padding-block: 5rem;
+  }
 }
 
-/* Empat kartu sebaris saat ruang cukup */
+/* LAYAR BESAR */
 @media (min-width: 70em) {
   .cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* Mode kontras paksa (Windows High Contrast) */
+/* HP */
+@media (max-width: 600px) {
+  .wrap {
+    width: min(100% - 1.25rem, 72rem);
+  }
+
+  .site-nav ul {
+    justify-content: center;
+  }
+
+  .site-nav a {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .brand {
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .brand .logo {
+    max-width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .brand h1 {
+    font-size: 1.35rem;
+  }
+
+  .section {
+    padding-block: 2rem;
+  }
+
+  .intro {
+    padding-block: 2.5rem;
+  }
+
+  main > .section:not(.intro) > .wrap {
+    padding: 1rem;
+  }
+
+  .actions .btn {
+    flex: 1 1 100%;
+  }
+
+  fieldset {
+    padding: 0.75rem;
+  }
+
+  .meta div {
+    flex-wrap: wrap;
+  }
+}
+
+/* MODE KONTRAS TINGGI */
 @media (forced-colors: active) {
   .btn,
   .card {
     border: 2px solid ButtonText;
   }
-}
-
-/* ==========================================================
-   Tampilan bertahap tanpa JavaScript, memakai :target.
-   Satu bagian tampil per waktu; tanpa hash = Beranda.
-   ========================================================== */
-main > .section { display: none; min-height: 60vh; }
-
-main > .section:target,
-main:not(:has(> .section:target)) > #beranda { display: block; }
-
-/* Klik "Kontak": sembunyikan bagian lain, footer tampil sendiri */
-body:has(#kontak:target) main > .section { display: none !important; }
-body:has(#kontak:target) main { min-height: 30vh; }
-
-/* Menu aktif */
-body:not(:has(:target)) .site-nav a[href="#beranda"],
-body:has(#beranda:target) .site-nav a[href="#beranda"],
-body:has(#layanan:target) .site-nav a[href="#layanan"],
-body:has(#form-permohonan:target) .site-nav a[href="#form-permohonan"],
-body:has(#kontak:target) .site-nav a[href="#kontak"] {
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-  text-decoration-thickness: 3px;
-  text-decoration-color: var(--accent);
-}
-
-.step-next { margin-top: 1.5rem; }
-
-
-/* ---------- Logo & background beranda ---------- */
-.brand .logo {
-  width: auto;
-  height: 4rem;
-  padding: 0.25rem;
-  background: #fff;
-  object-fit: contain;
-}
-
-.intro {
-  color: #fff;
-  padding-block: 3.5rem;
-}
-
-.intro h2,
-.intro p {
-  color: #fff;
-}
-
-.intro a { color: #fff; }
-
-.intro .steps li::before {
-  background: var(--accent);
-  color: var(--ink);
-}
-
-.intro .btn {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ink);
-}
-
-.intro .btn:hover {
-  background: #fff;
-  border-color: #fff;
-}
-
-@media (min-width: 56em) {
-  .intro { padding-block: 5rem; }
-}
-
-/* ---------- Background foto di semua halaman ---------- */
-body {
-  background: var(--brand-deep);
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(90deg, rgba(8, 54, 31, 0.94) 0%, rgba(8, 54, 31, 0.82) 55%, rgba(8, 54, 31, 0.6) 100%),
-    url("../img/background.jpg") center 40% / cover no-repeat;
-}
-
-/* Halaman selain beranda: isi tampil di panel putih agar mudah dibaca */
-.section--tint {
-  background: transparent;
-}
-
-main > .section:not(.intro) {
-  padding-block: 2rem;
-}
-
-main > .section:not(.intro) > .wrap {
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 1rem;
-  padding: 1.5rem 1.25rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-}
-
-@media (min-width: 40em) {
-  main > .section:not(.intro) > .wrap {
-    padding: 2rem;
-  }
-}
-
-.site-footer {
-  background: rgba(8, 54, 31, 0.92);
 }

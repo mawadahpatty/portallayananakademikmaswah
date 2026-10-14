@@ -46,7 +46,7 @@ body {
   margin: 0;
   font: 1.0625rem/1.6 var(--font);
   color: var(--ink);
-   background: var(--paper) url("background.jpg") center / cover fixed no-repeat;
+   background: var(--paper) url("background.jpg") center 40% / cover no-repeat;
 }
 
 img,
